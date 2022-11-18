@@ -1,0 +1,12 @@
+* {
+background:			#10171eB3;
+backgroundSolid:			#10171e;
+backgroundAdditional:			#10171e66;
+    background-alt: #00000000;
+foreground:			#cefbff;
+selected:			#276F9A;
+highlight:			#BE906D;
+urgent:				#155A85;
+on:					#2C6A92;
+off:				#276F9A;
+}

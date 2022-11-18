@@ -1,0 +1,8 @@
+profile {
+	output eDP-1 disable
+	output "Philips Consumer Electronics Company PHL 258B6QU UHB1623076065" mode 2560x1440 position 2560,0
+	output "Ancor Communications Inc ASUS PB298 D8LMTF079748" mode 2560x1080 position 0,210
+}
+profile {
+	output eDP-1 enable scale 1.75
+}

@@ -1,0 +1,86 @@
+{
+    "height": 30,
+    "spacing": 4,
+    "modules-left": ["custom/launcher", "sway/workspaces", "sway/mode", "sway/language"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "disk", "battery", "clock", "custom/powermenu"],
+    "sway/workspaces": {
+     "all-outputs": true,
+     "disable-scroll": true,
+     "format": "{name}",
+     "persistent_workspaces": {
+      "1":[],
+      "2":[],
+      "3":[]
+    },
+    },
+    "custom/launcher": {
+    	"format": "",
+	"on-click": "exec /bin/bash $HOME/.config/rofi/bin/launcher"	
+    },
+    "custom/powermenu": {
+	"format": "",
+	"on-click": "exec /bin/bash $HOME/.config/rofi/bin/powermenu"
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/language": {
+	"format": "{short}"
+    },
+    "clock": {
+        "timezone": "Europe/London",
+	"format": "{:%b %d %H:%M} ",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+	"format-alt": "{:%A, %B %d, %Y} "
+    },
+    "cpu": {
+        "format": "{usage}% ﬙",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    "disk": {
+    	"format": "{}% "
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": " {ipaddr}/{cidr}",
+        "tooltip-format": " {ifname} via {gwaddr}",
+        "format-linked": " {ifname} (No IP)",
+        "format-disconnected": " Disconnected",
+        "on-click": "exec /bin/bash $HOME/.config/rofi/bin/wifimenu"
+    },
+    "pulseaudio": {
+        "scroll-step": 1,
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": "婢{icon} {format_source}",
+        "format-muted": "婢 {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+}
+
