@@ -13,7 +13,7 @@ COPYRIGHT="Copyright (C) 2022 Rahul Sandhu"
 LICENSE="GNU General Public License 3.0"
 VERSION="0.1"
 
-src_directory=/home/$USER/dotfiles
+src_directory=/home/$USER/.dotfiles
 
 if [[ -d "/home/$USER/.config" ]]
 then
