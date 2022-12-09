@@ -1,12 +1,12 @@
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec systemctl --user import-environment && gnome-keyring-daemon --components=ssh\,secrets\,pkcs11 --start
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec dbus-update-activation-environment --all
 exec gnome-keyring-daemon --start --components=secrets
-exec kanshi
-exec export SSH_AUTH_SOCK
-exec nm-applet --indicator
+exec_always "pkill kanshi; kanshi"
 exec mako
+exec export SSH_AUTH_SOCK
+exec /usr/libexec/polkit-gnome-authentication-agent-1
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 set $mod Mod4
 set $left h
@@ -15,15 +15,16 @@ set $up k
 set $right l
 set $term kitty
 set $menu /bin/bash $HOME/.config/rofi/bin/launcher
-set $menu2 mauncher-launcher
-
-output eDP-1 pos 0 0 res 3840x2160 scale 1.75
+set $filemanager nautilus
+set $browser firefox
+output "Philips Consumer Electronics Company PHL 258B6QU UHB1623076065" pos 2560 0
+output "Ancor Communications Inc ASUS PB298 D8LMTF079748" pos 0 210
 
 gaps inner 10
 gaps outer 5
 default_border pixel 2
 for_window [app_id=ulauncher] border none
-
+corner_radius 10
 
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -31,8 +32,12 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMicMute exec pactl set-source-mute 0 toggle
 bindsym XF86MonBrightnessUp exec brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86PowerOff exec /bin/bash $HOME/.config/rofi/bin/powermenu
+bindsym XF86PowerDown exec /bin/bash $HOME/.config/rofi/bin/powermenu
 bindsym ctrl+alt+q exec swaylock -i /home/rahulsandhu/.config/sway/wallpaper_blur.jpg -k --font JetBrainsMonoNerdFont
-bindsym $mod+d exec $menu2
+bindsym ctrl+alt+e exec /bin/bash $HOME/.config/rofi/bin/powermenu
+bindsym $mod+shift+f exec $filemanager
+
 set $screenshot 1 selected, 2 whole, 3 selected clipboard, 4 whole clipboard, 5 swappy
 mode "$screenshot" {
     bindsym 1 exec 'grim -g "$(slurp)" ~/ps_$(date +"%Y%m%d%H%M%S").png', mode "default"
@@ -63,7 +68,7 @@ input "1267:12602:ELAN0721:00_04F3:313A" {
     tap enabled
 }
 
-output * bg ~/.config/sway/wallpaper.jpg fill
+output * bg ~/.config/sway/wallpaper.png fill
     bindsym $mod+Return exec $term
     bindsym $mod+Shift+q kill
     bindsym Mod1+space exec $menu

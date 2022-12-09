@@ -23,7 +23,7 @@ return require('packer').startup(function(use)
   -- Nvim treesitter
   use {
         'nvim-treesitter/nvim-treesitter',
-		run = ':TSUpdate'
+	run = ':TSUpdate'
     }
   -- Git signs
   use {

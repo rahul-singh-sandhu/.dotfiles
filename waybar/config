@@ -3,7 +3,7 @@
     "spacing": 4,
     "modules-left": ["custom/launcher", "sway/workspaces", "sway/mode", "sway/language"],
     "modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "disk", "battery", "clock", "custom/powermenu"],
+    "modules-right": ["pulseaudio", "network", "bluetooth", "cpu", "memory", "disk", "custom/updates", "battery", "clock", "custom/powermenu"],
     "sway/workspaces": {
      "all-outputs": true,
      "disable-scroll": true,
@@ -15,7 +15,7 @@
     },
     },
     "custom/launcher": {
-    	"format": "",
+    	"format": "",
 	"on-click": "exec /bin/bash $HOME/.config/rofi/bin/launcher"	
     },
     "custom/powermenu": {
@@ -44,6 +44,14 @@
     "disk": {
     	"format": "{}% "
     },
+	"custom/updates": {
+        "exec": "/bin/bash $HOME/.config/waybar/scripts/updates.sh",
+        "exec-if": "exit 0",
+        "on-click": "kitty -e 'yay'; pkill -SIGRTMIN+8 waybar",
+        "interval": "600",
+        "format": " {}",
+        "signal": 8
+    },
     "battery": {
         "states": {
             "warning": 30,
@@ -63,14 +71,22 @@
         "format-disconnected": " Disconnected",
         "on-click": "exec /bin/bash $HOME/.config/rofi/bin/wifimenu"
     },
+	"bluetooth": {
+	"format": " {status}",
+	"format-connected": " {device_alias}",
+	"format-connected-battery": " {device_alias} {device_battery_percentage}%",
+	"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+	"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+	"on-click": "exec blueberry"
+	},
     "pulseaudio": {
         "scroll-step": 1,
-        "format": "{volume}% {icon} {format_source}",
+        "format": "{icon} {volume}%",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": "婢{icon} {format_source}",
         "format-muted": "婢 {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
         "format-icons": {
             "headphone": "",
             "hands-free": "",

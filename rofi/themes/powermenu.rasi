@@ -7,10 +7,6 @@ configuration {
 @import                          "powermenu/colors.rasi"
 @import                          "powermenu/fonts.rasi"
 
-/*
-USE_BUTTONS=YES
-*/
-
 /*****----- Main Window -----*****/
 window {
     /* properties for window widget */
@@ -18,7 +14,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       800px;
+    width:                       500px;
     x-offset:                    0px;
     y-offset:                    0px;
 
@@ -26,7 +22,7 @@ window {
     enabled:                     true;
     margin:                      0px;
     padding:                     0px;
-    border:                      0px solid;
+    border:                      2px solid;
     border-radius:               20px;
     border-color:                @selected;
     cursor:                      "default";
@@ -43,7 +39,7 @@ mainbox {
     border-radius:               0px;
     border-color:                @selected;
     background-color:            transparent;
-    children:                    [ "inputbar", "listview" ];
+    children:                    [ "inputbar", "message", "listview" ];
 }
 
 /*****----- Inputbar -----*****/
@@ -58,10 +54,6 @@ inputbar {
     background-color:            transparent;
     text-color:                  @foreground;
     children:                    [ "textbox-prompt-colon", "prompt"];
-}
-
-dummy {
-    background-color:            transparent;
 }
 
 textbox-prompt-colon {
@@ -96,7 +88,7 @@ textbox {
     background-color:            inherit;
     text-color:                  inherit;
     vertical-align:              0.5;
-    horizontal-align:            0.5;
+    horizontal-align:            0.0;
     placeholder-color:           @foreground;
     blink:                       true;
     markup:                      true;
@@ -113,8 +105,8 @@ error-message {
 /*****----- Listview -----*****/
 listview {
     enabled:                     true;
-    columns:                     5;
-    lines:                       1;
+    columns:                     1;
+    lines:                       5;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
@@ -123,7 +115,7 @@ listview {
     fixed-height:                true;
     fixed-columns:               true;
     
-    spacing:                     15px;
+    spacing:                     5px;
     margin:                      0px;
     padding:                     0px;
     border:                      0px solid;
@@ -139,21 +131,20 @@ element {
     enabled:                     true;
     spacing:                     0px;
     margin:                      0px;
-    padding:                     40px 10px;
+    padding:                     12px;
     border:                      0px solid;
     border-radius:               100%;
     border-color:                @selected;
-    background-color:            @background-alt;
+    background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      pointer;
 }
 element-text {
-    font:                        "feather bold 32";
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;
     vertical-align:              0.5;
-    horizontal-align:            0.5;
+    horizontal-align:            0.0;
 }
 element selected.normal {
     background-color:            var(selected);

@@ -110,6 +110,7 @@ require("indent_blankline").setup {
 local api = vim.api
 local g = vim.g
 local opt = vim.opt
+local keymap = vim.api.nvim_set_keymap
 
 opt.number = true
 opt.tabstop = 4
@@ -123,3 +124,5 @@ opt.showtabline = 2
 opt.list = true
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
+keymap("n", "<Space>f", ":NvimTreeToggle<CR>", {silent = true} )
+keymap("n", "<Space>t", ":ToggleTerm<CR>", {silent = true} )
