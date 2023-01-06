@@ -1,3 +1,4 @@
+exec eval `keychain --eval --agents ssh id_rsa`
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec systemctl --user import-environment && gnome-keyring-daemon --components=ssh\,secrets\,pkcs11 --start
 exec dbus-update-activation-environment --all
@@ -23,8 +24,18 @@ output "Ancor Communications Inc ASUS PB298 D8LMTF079748" pos 0 210
 gaps inner 10
 gaps outer 5
 default_border pixel 2
-for_window [app_id=ulauncher] border none
 corner_radius 10
+
+for_window [app_id="zoom" title="^zoom$"] border none, floating enable
+for_window [app_id="zoom" title="^(Zoom|About)$"] border pixel, floating enable
+for_window [app_id="zoom" title="Settings"] floating enable, floating_minimum_size 960 x 700
+for_window [app_id="zoom" title="Zoom - Free Account"] border none, floating enable
+for_window [app_id="zoom" title="Zoom Cloud Meetings"] border none, floating enable
+for_window [app_id="zoom" title="Zoom Meeting(.*)?"] workspace next_on_output --create, move container to workspace current, floating disable, inhibit_idle open
+for_window [app_id="zoom" title="Choose ONE of the audio conference options"] border none, floating enable
+for_window [app_id="zoom" title="Zoom Meeting"] border none, floating enable
+
+for_window [title="File Operation Progress"] floating enable
 
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -34,7 +45,8 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 bindsym XF86PowerOff exec /bin/bash $HOME/.config/rofi/bin/powermenu
 bindsym XF86PowerDown exec /bin/bash $HOME/.config/rofi/bin/powermenu
-bindsym ctrl+alt+q exec swaylock -i /home/rahulsandhu/.config/sway/wallpaper_blur.jpg -k --font JetBrainsMonoNerdFont
+bindsym XF86AudioPlay exec pactl set-source-mute 0 toggle
+bindsym ctrl+alt+q exec swaylock -i /home/rahulsandhu/.config/sway/wallpaper.png -k --font JetBrainsMonoNerdFont --clock --indicator --effect-blur 9x9
 bindsym ctrl+alt+e exec /bin/bash $HOME/.config/rofi/bin/powermenu
 bindsym $mod+shift+f exec $filemanager
 

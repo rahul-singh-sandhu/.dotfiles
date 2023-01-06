@@ -10,4 +10,12 @@ font_size 11.0
 
 include ./alabaster-dark.conf
 
+// background_opacity 0.9
+
 hide_window_decorations yes
+
+
+# BEGIN_KITTY_THEME
+# One Dark
+include current-theme.conf
+# END_KITTY_THEME
