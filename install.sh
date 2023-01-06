@@ -22,8 +22,8 @@ fi
 
 if [[ $1 == "-z" ]] || [[ $1 == "--zsh" ]]|| [[ $2 == "-z" ]] || [[ $2 == "--zsh" ]]; then
 CHSH=no RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-cp ${src_directory}/.zshrc /home/$USER/
-cp ${src_directory}/.zshenv /home/$USER/
+cp ${src_directory}/zshrc /home/$USER/.zshrc
+cp ${src_directory}/zshenv /home/$USER/.zshenv
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 fi
